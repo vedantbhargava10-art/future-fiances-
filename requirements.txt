@@ -1,0 +1,9 @@
+# Pinned to the versions this app was developed and tested against, so a
+# rebuild on any host installs exactly what ran locally.
+streamlit==1.60.0
+pandas==3.0.5
+altair==6.2.2
+
+# Optional: enables the in-app Gemini advisor. Both calculators work fully
+# without it; the advisor reports that the client package is missing.
+google-genai==2.14.0

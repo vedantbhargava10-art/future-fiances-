@@ -1,0 +1,6 @@
+# Streamlit reads the theme at startup. The runtime st.set_option("theme.base",
+# "light") call in main() is a no-op, so without this file a visitor whose OS
+# prefers dark mode gets Streamlit's dark widgets against the app's light cards.
+[theme]
+base = "light"
+primaryColor = "#846ac2"

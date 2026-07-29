@@ -1,0 +1,17 @@
+# Local secrets - never commit
+.streamlit/secrets.toml
+
+# Virtualenv
+.venv/
+venv/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# OS
+.DS_Store
+
+# Claude Code local settings
+.claude/
