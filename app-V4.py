@@ -280,21 +280,21 @@ def classify_risk(emi_burden_pct: Decimal) -> str:
 
 
 DEFAULT_STUDENT: dict[str, Decimal | int] = {
-    "loan_amount_inr": dec("500000"),
+    "loan_amount_inr": dec("4000000"),
     "scholarships_inr": dec("0"),
-    "annual_interest_rate_pct": dec("8"),
+    "annual_interest_rate_pct": dec("10.25"),
     "years_before_repayment": 3,
-    "expected_starting_salary_inr": dec("800000"),
+    "expected_starting_salary_inr": dec("2500000"),
     "alternative_salary_inr": dec("300000"),
-    "years_in_college": 3,
+    "years_in_college": 4,
     "loan_term_years": 10,
     "monthly_living_expenses_inr": dec("20000"),
     "extra_monthly_payment_inr": dec("5000"),
 }
 
 DEFAULT_OVERSEAS: dict[str, Decimal | int] = {
-    "loan_amount_inr": dec("4000000"),
-    "annual_interest_rate_pct": dec("10"),
+    "loan_amount_inr": dec("12500000"),
+    "annual_interest_rate_pct": dec("10.25"),
     "years_before_repayment": 2,
     "loan_term_years": 10,
     "india_starting_salary_inr": dec("1800000"),
