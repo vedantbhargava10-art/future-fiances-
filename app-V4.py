@@ -1,4 +1,4 @@
-"""FutureFinance v4 - a self-contained Streamlit decision-support app.
+"""TrUcost v4 - a self-contained Streamlit decision-support app.
 
 Run with:
 
@@ -160,7 +160,7 @@ def advisor_configuration() -> AdvisorConfiguration:
         api_key, key_source = session_key, "this browser session"
     else:
         api_key, key_source = _configured_value(
-            "GEMINI_API_KEY", "GOOGLE_API_KEY", "FF_GEMINI_API_KEY"
+            "GEMINI_API_KEY", "GOOGLE_API_KEY", "TRUCOST_GEMINI_API_KEY"
         )
     if not api_key:
         inline_key = _nonempty_text(GEMINI_API_KEY)
@@ -171,7 +171,7 @@ def advisor_configuration() -> AdvisorConfiguration:
     if not re.fullmatch(MODEL_NAME_PATTERN, default_model):
         default_model = FALLBACK_GEMINI_MODEL
     session_model = _nonempty_text(st.session_state.get("advisor_model"))
-    configured_model, _ = _configured_value("GEMINI_MODEL", "FF_GEMINI_MODEL")
+    configured_model, _ = _configured_value("GEMINI_MODEL", "TRUCOST_GEMINI_MODEL")
     model = session_model or configured_model or default_model
     if not re.fullmatch(MODEL_NAME_PATTERN, model):
         model = default_model
@@ -704,7 +704,7 @@ def clean_inputs(kind: str, raw: dict[str, Any]) -> dict[str, Any]:
 
 def safe_filename(name: str) -> str:
     compact = re.sub(r"[^a-zA-Z0-9 _-]+", "-", name).strip(" ._-").lower()
-    return f"{compact or 'futurefinance-scenario'}.json"
+    return f"{compact or 'TrUcost-scenario'}.json"
 
 
 def current_assumptions() -> tuple[str, dict[str, Any], dict[str, Any]]:
@@ -923,7 +923,7 @@ def advisor_prompt(
     conversation: list[dict[str, Any]] | None = None,
 ) -> str:
     instructions = (
-        "You are FutureFinance's careful financial-planning advisor. Use only the supplied "
+        "You are TrUcost's careful financial-planning advisor. Use only the supplied "
         "calculation context. Do not invent facts, live rates, lender terms, tax rules, or "
         "visa information. State uncertainty when the calculation does not answer a question. "
         "Do not provide regulated financial, tax, legal, or immigration advice. Keep the "
@@ -1050,6 +1050,7 @@ def inject_styles() -> None:
         .brand { font-family: Georgia, serif; font-size: 1.65rem; font-weight: 700; letter-spacing: -0.04em; color: var(--ink); margin-bottom: .25rem; }
         .brand-sub { color: var(--muted); font-size: .79rem; margin-bottom: 1.4rem; }
         .eyebrow { color: var(--purple); text-transform: uppercase; letter-spacing: .12em; font-size: .72rem; font-weight: 700; margin-bottom: .4rem; }
+        .hero .eyebrow { text-transform: none; }
         .hero { background: linear-gradient(135deg, #f0ecfb 0%, #fbfbfc 62%); border: 1px solid #e4dff0; border-radius: 20px; padding: 2rem 2.2rem; margin-bottom: 1.25rem; }
         .hero h1 { font-family: Georgia, serif; font-size: 2.65rem; line-height: 1.05; letter-spacing: -.05em; color: var(--ink); margin: 0 0 .65rem; }
         .hero p { color: #5d5b68; max-width: 680px; margin: 0; font-size: 1.03rem; line-height: 1.55; }
@@ -1130,7 +1131,7 @@ def page_header(eyebrow: str, title: str, copy: str) -> None:
 
 def render_overview() -> None:
     st.markdown(
-        '<div class="hero"><div class="eyebrow">FutureFinance</div><h1>Make the long-term cost visible.</h1><p>Model education loans, compare overseas study paths, save the decisions worth revisiting, and ask grounded questions about the tradeoffs.</p></div>',
+        '<div class="hero"><div class="eyebrow">TrUcost</div><h1>Make the long-term cost visible.</h1><p>Model education loans, compare overseas study paths, save the decisions worth revisiting, and ask grounded questions about the tradeoffs.</p></div>',
         unsafe_allow_html=True,
     )
     col1, col2 = st.columns(2)
@@ -1171,7 +1172,7 @@ def render_overview() -> None:
         st.info("Run a calculator, then save the current result from Scenarios to build a decision library.")
 
     st.markdown(
-        '<div class="disclaimer">FutureFinance provides estimates for education planning, not financial, tax, immigration, or legal advice. Results are only as useful as the assumptions behind them.</div>',
+        '<div class="disclaimer">TrUcost provides estimates for education planning, not financial, tax, immigration, or legal advice. Results are only as useful as the assumptions behind them.</div>',
         unsafe_allow_html=True,
     )
 
@@ -1441,7 +1442,7 @@ def render_scenarios() -> None:
                 set_flash("Scenario saved.")
                 st.rerun()
     with top_right:
-        uploaded = st.file_uploader("Import JSON", type=["json"], help="Import an exported FutureFinance scenario or a direct scenario payload.")
+        uploaded = st.file_uploader("Import JSON", type=["json"], help="Import an exported TrUcost scenario or a direct scenario payload.")
         if uploaded is not None:
             raw_bytes = uploaded.getvalue()
             if len(raw_bytes) > MAX_IMPORT_BYTES:
@@ -1705,14 +1706,14 @@ def main() -> None:
         st.set_option("theme.base", "light")
     except Exception:
         pass
-    st.set_page_config(page_title="FutureFinance", page_icon="◌", layout="wide", initial_sidebar_state="expanded")
+    st.set_page_config(page_title="TrUcost", page_icon="◌", layout="wide", initial_sidebar_state="expanded")
     init_state()
     if st.session_state.pending_nav:
         st.session_state.nav = st.session_state.pending_nav
         st.session_state.pending_nav = None
     inject_styles()
     with st.sidebar:
-        st.markdown('<div class="brand">FutureFinance</div><div class="brand-sub">Education decisions, made visible.</div>', unsafe_allow_html=True)
+        st.markdown('<div class="brand">TrUcost</div><div class="brand-sub">Education decisions, made visible.</div>', unsafe_allow_html=True)
         st.radio("Navigate", ["Overview", "Student Loan", "Overseas Study", "Scenarios", "Advisor"], key="nav")
         st.markdown("---")
         st.caption("Guest workspace")
