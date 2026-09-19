@@ -1,5 +1,5 @@
 ---
-title: FutureFinance
+title: TrUcost
 emoji: 🎓
 colorFrom: indigo
 colorTo: blue
@@ -10,7 +10,7 @@ short_description: Education finance decisions, made visible.
 pinned: false
 ---
 
-# FutureFinance
+# TrUcost
 
 A self-contained Streamlit decision-support app for education finance: a student
 loan calculator, an overseas study cost comparison, saved scenarios with JSON
@@ -27,7 +27,7 @@ import/export, and an optional Gemini-backed advisor.
 The advisor needs a Gemini API key. The app resolves it from, in priority order:
 a key typed into the running app, Streamlit secrets, the environment, then the
 `GEMINI_API_KEY` constant at the top of `app-V4.py`. Accepted names are
-`GEMINI_API_KEY`, `GOOGLE_API_KEY`, and `FF_GEMINI_API_KEY`.
+`GEMINI_API_KEY`, `GOOGLE_API_KEY`, and `TRUCOST_GEMINI_API_KEY`.
 
 Keep the constant in `app-V4.py` empty. Supply the key out-of-band instead:
 
